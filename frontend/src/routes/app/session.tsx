@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 
-export const Route = createFileRoute('/admin/session')({
+export const Route = createFileRoute('/app/session')({
   component: RouteComponent,
 })
 

@@ -11,11 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignUpRouteImport } from './routes/sign-up'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AdminRouteRouteImport } from './routes/admin/route'
+import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as AdminSessionRouteImport } from './routes/admin/session'
-import { Route as AdminAccountRouteImport } from './routes/admin/account'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppSessionRouteImport } from './routes/app/session'
+import { Route as AppAccountRouteImport } from './routes/app/account'
 
 const SignUpRoute = SignUpRouteImport.update({
   id: '/sign-up',
@@ -27,9 +27,9 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRouteRoute = AdminRouteRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const AppRouteRoute = AppRouteRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,81 +37,75 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
+const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AdminRouteRoute,
+  getParentRoute: () => AppRouteRoute,
 } as any)
-const AdminSessionRoute = AdminSessionRouteImport.update({
+const AppSessionRoute = AppSessionRouteImport.update({
   id: '/session',
   path: '/session',
-  getParentRoute: () => AdminRouteRoute,
+  getParentRoute: () => AppRouteRoute,
 } as any)
-const AdminAccountRoute = AdminAccountRouteImport.update({
+const AppAccountRoute = AppAccountRouteImport.update({
   id: '/account',
   path: '/account',
-  getParentRoute: () => AdminRouteRoute,
+  getParentRoute: () => AppRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteRouteWithChildren
+  '/app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/sign-up': typeof SignUpRoute
-  '/admin/account': typeof AdminAccountRoute
-  '/admin/session': typeof AdminSessionRoute
-  '/admin/': typeof AdminIndexRoute
+  '/app/account': typeof AppAccountRoute
+  '/app/session': typeof AppSessionRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/sign-up': typeof SignUpRoute
-  '/admin/account': typeof AdminAccountRoute
-  '/admin/session': typeof AdminSessionRoute
-  '/admin': typeof AdminIndexRoute
+  '/app/account': typeof AppAccountRoute
+  '/app/session': typeof AppSessionRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteRouteWithChildren
+  '/app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/sign-up': typeof SignUpRoute
-  '/admin/account': typeof AdminAccountRoute
-  '/admin/session': typeof AdminSessionRoute
-  '/admin/': typeof AdminIndexRoute
+  '/app/account': typeof AppAccountRoute
+  '/app/session': typeof AppSessionRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin'
+    | '/app'
     | '/login'
     | '/sign-up'
-    | '/admin/account'
-    | '/admin/session'
-    | '/admin/'
+    | '/app/account'
+    | '/app/session'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/login'
-    | '/sign-up'
-    | '/admin/account'
-    | '/admin/session'
-    | '/admin'
+  to: '/' | '/login' | '/sign-up' | '/app/account' | '/app/session' | '/app'
   id:
     | '__root__'
     | '/'
-    | '/admin'
+    | '/app'
     | '/login'
     | '/sign-up'
-    | '/admin/account'
-    | '/admin/session'
-    | '/admin/'
+    | '/app/account'
+    | '/app/session'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRouteRoute: typeof AdminRouteRouteWithChildren
+  AppRouteRoute: typeof AppRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
   SignUpRoute: typeof SignUpRoute
 }
@@ -132,11 +126,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteRouteImport
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -146,49 +140,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/': {
-      id: '/admin/'
+    '/app/': {
+      id: '/app/'
       path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof AdminRouteRoute
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRouteRoute
     }
-    '/admin/session': {
-      id: '/admin/session'
+    '/app/session': {
+      id: '/app/session'
       path: '/session'
-      fullPath: '/admin/session'
-      preLoaderRoute: typeof AdminSessionRouteImport
-      parentRoute: typeof AdminRouteRoute
+      fullPath: '/app/session'
+      preLoaderRoute: typeof AppSessionRouteImport
+      parentRoute: typeof AppRouteRoute
     }
-    '/admin/account': {
-      id: '/admin/account'
+    '/app/account': {
+      id: '/app/account'
       path: '/account'
-      fullPath: '/admin/account'
-      preLoaderRoute: typeof AdminAccountRouteImport
-      parentRoute: typeof AdminRouteRoute
+      fullPath: '/app/account'
+      preLoaderRoute: typeof AppAccountRouteImport
+      parentRoute: typeof AppRouteRoute
     }
   }
 }
 
-interface AdminRouteRouteChildren {
-  AdminAccountRoute: typeof AdminAccountRoute
-  AdminSessionRoute: typeof AdminSessionRoute
-  AdminIndexRoute: typeof AdminIndexRoute
+interface AppRouteRouteChildren {
+  AppAccountRoute: typeof AppAccountRoute
+  AppSessionRoute: typeof AppSessionRoute
+  AppIndexRoute: typeof AppIndexRoute
 }
 
-const AdminRouteRouteChildren: AdminRouteRouteChildren = {
-  AdminAccountRoute: AdminAccountRoute,
-  AdminSessionRoute: AdminSessionRoute,
-  AdminIndexRoute: AdminIndexRoute,
+const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppAccountRoute: AppAccountRoute,
+  AppSessionRoute: AppSessionRoute,
+  AppIndexRoute: AppIndexRoute,
 }
 
-const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
-  AdminRouteRouteChildren,
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRouteRoute: AdminRouteRouteWithChildren,
+  AppRouteRoute: AppRouteRouteWithChildren,
   LoginRoute: LoginRoute,
   SignUpRoute: SignUpRoute,
 }

@@ -21,17 +21,17 @@ import { ThemeToggle } from "./theme-toggle"
 const items = [
   {
     title: "Home",
-    url: "/admin",
+    url: "/app",
     icon: Home,
   },
   {
     title: "Session",
-    url: "/admin/session",
+    url: "/app/session",
     icon: User,
   },
 ]
 
-export function AdminSidebar() {
+export function AppSidebar() {
   const { data: session } = authClient.useSession()
   const email = session?.user?.email || ""
   const name = session?.user?.name || ""

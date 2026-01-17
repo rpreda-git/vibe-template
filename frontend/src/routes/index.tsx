@@ -8,6 +8,9 @@ export const Route = createFileRoute('/')({
 function App() {
   return (
     <div className="flex flex-col gap-4 w-1/4 mx-auto mt-40">
+       <Button asChild>
+            <Link to="/app">App</Link>
+        </Button>
         <Button asChild>
             <Link to="/admin">Admin</Link>
         </Button>
@@ -17,6 +20,7 @@ function App() {
         <Button asChild>
             <Link to="/sign-up">Sign Up</Link>
         </Button>
+        
     </div>
   )
 }
